@@ -1,0 +1,54 @@
+<template>
+  <div>
+      <a :href="'https://www.youtube.com/watch?v=' + set.videoId"><img :src="'https://img.youtube.com/vi/' + set.videoId + '/default.jpg'" alt="" size="200"></a>
+      <p>
+        <b>{{set.artist}}</b>
+        {{ set.venue }} 
+        <i>{{set.date}}</i>
+
+      </p>
+    <!-- <h2>{{set.artist}} @ {{ set.venue }} {{set.date}}</h2> -->
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SetCard",
+  props: {
+    set: Object,
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+img{
+    float:left;
+}
+div{
+      height: 100px;
+      width: 600px;
+  line-height: 100px;
+  text-align: center;
+  margin:auto;
+}
+h2 {
+    display:inline;
+    text-align: center;
+}
+/* h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+} */
+</style>
