@@ -6,7 +6,7 @@
 
            <h3>Filter By Venue</h3> 
         <select v-model="venue">
-            <option v-for="venue in single" :key="venue" :value="venue">{{venue}}</option>
+            <option v-for="venue in noDuplicatesVenues" :key="venue" :value="venue">{{venue}}</option>
             <option value="Norðanpaunk">Norðanpaunk</option>
             <option value="Húrra">Húrra</option>
         </select> 
@@ -25,6 +25,7 @@
 <script>
 import SetsData from "../assets/sets.json";
 export default {
+  name:"Venues",
   data: () => {
     return {
       venues: SetsData,
@@ -38,7 +39,7 @@ export default {
     count(){
       return this.venues.filter(v=> v.venue ==this.venue).length;
     },
-    single(){
+    noDuplicatesVenues(){
       let arr = [];
       this.venues.forEach(v => arr.push(v.venue));
       return [...new Set(arr)].sort();

@@ -1,34 +1,53 @@
 <template>
-  <div class="Artists">
-    <SetCard msg="Welcome to Your Vue.js App" />
-    <ul>
-      <li v-for="set in sets" :key="set.videoId">
-        {{ set.artist }}
-      </li>
-    </ul>
+  <div class="artists">
+    <!-- <ul>
+      <li v-for="venue in venues" :key="venue">{{venue.venue}}</li>
+    </ul> -->
+
+           <h3>Filter By Artist</h3> 
+        <select v-model="artist">
+            <option v-for="artist in noDuplicatesArtists" :key="artist" :value="artist">{{artist}}</option>
+        </select> 
+        <ul>
+            <li v-for="artist in filtered" :key="artist.videoId">{{artist.artist}} @ {{artist.venue}} {{artist.date}}</li>
+        </ul>
+        <ul>
+</ul>
+        {{count}}
+
+
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import SetCard from "@/components/SetCard.vue";
 import SetsData from "../assets/sets.json";
-
 export default {
   name: "Artists",
-  components: {
-    SetCard,
-  },
   data: () => {
     return {
-      sets: SetsData,
+      artists: SetsData,
+      artist: 'R6013',
     };
   },
+  computed: {
+    filtered(){
+      return this.artists.filter(a => a.artist == this.artist)
+    },
+    count(){
+      return this.artists.filter(a=> a.artist ==this.artist).length;
+    },
+    noDuplicatesArtists(){
+      let arr = [];
+      this.artists.forEach(a => arr.push(a.artist));
+      return [...new Set(arr)].sort();
+    }
+  }
 };
 </script>
 
 <style scoped>
-li {
+ul {
   list-style: none;
 }
 </style>
