@@ -2,7 +2,7 @@
   <div class="Artists">
     <SetCard msg="Welcome to Your Vue.js App" />
     <ul>
-      <li v-for="set in sets" :key="set">
+      <li v-for="set in sets" :key="set.videoId">
         {{ set.artist }}
       </li>
     </ul>

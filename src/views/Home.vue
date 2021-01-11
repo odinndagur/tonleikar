@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-            <SetCard v-for="set in sets" :key="set" :set="set"/> <br/>
+            <SetCard v-for="set in sets" :key="set.videoId" :set="set"/> <br/>
 
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
     return {
       sets: SetsData,
     }
-  }
+  },
 }
 </script>
 

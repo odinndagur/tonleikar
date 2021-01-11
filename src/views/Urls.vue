@@ -2,7 +2,7 @@
   <div class="Urls">
     <SetCard msg="Urls" />
     <ul>
-      <li v-for="url in urls" :key="url">
+      <li v-for="url in urls" :key="url.videoId">
         {{ url }}
       </li>
     </ul>

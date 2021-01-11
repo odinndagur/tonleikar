@@ -1,8 +1,24 @@
 <template>
   <div class="artists">
-    <ul>
+    <!-- <ul>
       <li v-for="venue in venues" :key="venue">{{venue.venue}}</li>
-    </ul>
+    </ul> -->
+
+           <h3>Filter By Venue</h3> 
+        <select v-model="venue">
+            <option v-for="venue in single" :key="venue" :value="venue">{{venue}}</option>
+            <option value="Norðanpaunk">Norðanpaunk</option>
+            <option value="Húrra">Húrra</option>
+        </select> 
+        <ul>
+            <li v-for="venue in filtered" :key="venue.videoId">{{venue.artist}} @ {{venue.venue}} {{venue.date}}</li>
+        </ul>
+        <ul>
+</ul>
+        {{count}}
+
+
+
   </div>
 </template>
 
@@ -12,8 +28,22 @@ export default {
   data: () => {
     return {
       venues: SetsData,
+      venue: 'R6013',
     };
   },
+  computed: {
+    filtered(){
+      return this.venues.filter(v => v.venue == this.venue)
+    },
+    count(){
+      return this.venues.filter(v=> v.venue ==this.venue).length;
+    },
+    single(){
+      let arr = [];
+      this.venues.forEach(v => arr.push(v.venue));
+      return [...new Set(arr)].sort();
+    }
+  }
 };
 </script>
 
