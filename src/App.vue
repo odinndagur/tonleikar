@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/Artists">Artists</router-link> |
       <router-link to="/Venues">Venues</router-link> |
-      <router-link to="/Urls">Urls</router-link>
+      <router-link to="/Urls">Urls</router-link> |
+      <router-link to="/Import">Import Set</router-link>
     </div>
     <router-view />
   </div>
