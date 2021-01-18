@@ -1,49 +1,32 @@
 <template>
-  <div class="artists">
-    <!-- <ul>
-      <li v-for="venue in venues" :key="venue">{{venue.venue}}</li>
-    </ul> -->
-
-           <h3>Filter By Venue</h3> 
-        <select v-model="venue">
-            <option v-for="venue in noDuplicatesVenues" :key="venue" :value="venue">{{venue}}</option>
-            <option value="Norðanpaunk">Norðanpaunk</option>
-            <option value="Húrra">Húrra</option>
-        </select> 
-        <ul>
-            <li v-for="venue in filtered" :key="venue.videoId">{{venue.artist}} @ {{venue.venue}} {{venue.date}}</li>
-        </ul>
-        <ul>
-</ul>
-        {{count}}
-
-
-
+  <div class="venues">
+    <VenueCard v-for="venue in noDuplicatesVenues" :key="venue" :value="venue" :sets="filtered(venue)"/>
   </div>
 </template>
 
 <script>
 import SetsData from "../assets/sets.json";
+import VenueCard from "../components/VenueCard.vue";
 export default {
-  name:"Venues",
+  components: { VenueCard },
+  name: "Venues",
   data: () => {
     return {
       venues: SetsData,
-      venue: 'R6013',
+      venue: "",
     };
   },
   computed: {
-    filtered(){
-      return this.venues.filter(v => v.venue == this.venue)
-    },
-    count(){
-      return this.venues.filter(v=> v.venue ==this.venue).length;
-    },
-    noDuplicatesVenues(){
+    noDuplicatesVenues() {
       let arr = [];
-      this.venues.forEach(v => arr.push(v.venue));
+      this.venues.forEach((a) => arr.push(a.venue));
       return [...new Set(arr)].sort();
-    }
+    },
+  },
+  methods: {
+        filtered(venue) {
+      return this.venues.filter((v) => v.venue == venue);
+    },
   }
 };
 </script>
@@ -52,4 +35,8 @@ export default {
 ul {
   list-style: none;
 }
+.artistCard {
+outline:3px black;
+}
+
 </style>

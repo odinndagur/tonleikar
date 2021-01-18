@@ -2,8 +2,8 @@
   <div>
       <a :href="'https://www.youtube.com/watch?v=' + set.videoId"><img :src="'https://img.youtube.com/vi/' + set.videoId + '/default.jpg'" alt="" size="200"></a>
       <p>
-        <b>{{set.artist}}</b>
-        {{ set.venue }} 
+        <b><router-link :to="'/artists/' + set.artist">{{set.artist}}</router-link></b> <br/>
+        <router-link :to="'/venues/' + set.venue">{{ set.venue }}</router-link>
         <i>{{set.date}}</i>
 
       </p>
@@ -28,10 +28,10 @@ img{
 }
 div{
       height: 100px;
-      width: 600px;
-  line-height: 100px;
+      max-width: 600px;
   text-align: center;
   margin:auto;
+  border:1px dotted black;
 }
 h2 {
     display:inline;

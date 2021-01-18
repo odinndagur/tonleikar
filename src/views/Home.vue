@@ -112,4 +112,8 @@ SetCard {
   margin: auto;
   width: 50%;
 }
+div{
+  max-width:600px;
+  margin:auto;
+}
 </style>
