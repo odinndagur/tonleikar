@@ -1,7 +1,7 @@
 <template>
   <div class="venue">
 <h1>{{ $route.params.venue }}</h1>
-    <SetCard v-for="set in filterVenue" :key="set" :set="set" /> <br />
+    <SetCard class="set-card" v-for="set in filterVenue" :key="set" :set="set" /> <br />
 
 <!-- <ul>
   <li v-for="set in filterArtist" :key="set">
@@ -48,4 +48,7 @@ filterVenue(){
 </script>
 
 <style scoped>
+.set-card{
+  margin:5px;
+}
 </style>

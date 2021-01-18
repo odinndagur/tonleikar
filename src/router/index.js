@@ -36,11 +36,6 @@ const routes = [
     component: () => import('../views/Venue.vue')
   },
   {
-    path: '/urls',
-    name:'Urls',
-    component: () => import('../views/Urls.vue')
-  },
-  {
     path: '/import',
     name:'ImportSet',
     component: () => import('../views/ImportSet.vue')

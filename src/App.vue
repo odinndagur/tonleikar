@@ -3,9 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/Artists">Artists</router-link> |
-      <router-link to="/Venues">Venues</router-link> |
-      <router-link to="/Urls">Urls</router-link> |
-      <router-link to="/Import">Import Set</router-link>
+      <router-link to="/Venues">Venues</router-link>
     </div>
     <router-view />
   </div>
@@ -32,5 +30,25 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+  a:link {
+  text-decoration: none;
+  color:black;
+}
+
+a:visited {
+  text-decoration: none;
+    color:black;
+}
+
+a:hover {
+  text-decoration: underline;
+    color:black;
+}
+
+a:active {
+  text-decoration: underline;
+    color:black;
 }
 </style>

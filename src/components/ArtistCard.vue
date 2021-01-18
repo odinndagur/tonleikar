@@ -1,8 +1,12 @@
 <template>
   <div class="artistCard">
     <div class="artistHeading">
-    <router-link :to="'/artists/' + sets[0].artist"><h2>{{sets[0].artist}}</h2></router-link>
-    <h3>{{count}} sets.</h3>
+          <router-link
+            :to="'/artists/' + sets[0].artist"
+            routerLinkActive="routerLinkActive"
+            ><b><span class="artist">{{ sets[0].artist }}</span></b>
+            </router-link>
+            <span class="count">{{ count }} sets.</span>
     </div>
 
 
@@ -34,14 +38,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.artistHeading{
-    clear: both;
+.artistHeading {
+  clear: both;
+  border-bottom: 1px solid black;
 }
-.artistHeading h2 {
-    float:left;
+.artist {
+  float:left;
+  font-size:1.2rem;
 }
-.artistHeading h3 {
-    float:right;
+.count{
+margin-left:1em;
+float:right;
 }
 /* img{
     float:left;
@@ -52,10 +59,6 @@ div{
   max-width: 600px;
   /* border: 3px solid black; */
   /* margin:2px auto; */
-}
-
-div:hover{
-    background-color:#F1B4A7
 }
 /*
 h2 {

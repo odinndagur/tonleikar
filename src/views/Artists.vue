@@ -1,26 +1,10 @@
 <template>
   <div class="artists">
-    <!-- <ul>
-      <li v-for="venue in venues" :key="venue">{{venue.venue}}</li>
-    </ul> -->
-    <ArtistCard v-for="artist in noDuplicatesArtists" :key="artist" :value="artist" :sets="filtered(artist)"/>
-    <!-- <h3>Filter By Artist</h3>
-    <select v-model="artist">
-      <option
-        v-for="artist in noDuplicatesArtists"
-        :key="artist"
-        :value="artist"
-      >
-        {{ artist }}
-      </option>
-    </select>
     <ul>
-      <li v-for="artist in filtered" :key="artist.videoId">
-        {{ artist.artist }} @ {{ artist.venue }} {{ artist.date }}
+      <li v-for="artist in noDuplicatesArtists" :key="artist" :value="artist">
+        <ArtistCard class="artistCard" :sets="filtered(artist)"/>
       </li>
     </ul>
-    <ul></ul>
-    {{ count }} -->
   </div>
 </template>
 
@@ -33,13 +17,10 @@ export default {
   data: () => {
     return {
       artists: SetsData,
-      artist: "R6013",
+      artist: "",
     };
   },
   computed: {
-    count() {
-      return this.artists.filter((a) => a.artist == this.artist).length;
-    },
     noDuplicatesArtists() {
       let arr = [];
       this.artists.forEach((a) => arr.push(a.artist));
@@ -47,10 +28,10 @@ export default {
     },
   },
   methods: {
-        filtered(artist) {
+    filtered(artist) {
       return this.artists.filter((a) => a.artist == artist);
     },
-  }
+  },
 };
 </script>
 
@@ -59,6 +40,8 @@ ul {
   list-style: none;
 }
 .artistCard {
-outline:3px black;
+  outline: 3px black;
+  max-width:80%;
+  margin:auto;
 }
 </style>

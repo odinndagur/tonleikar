@@ -1,6 +1,10 @@
 <template>
   <div class="venues">
-    <VenueCard v-for="venue in noDuplicatesVenues" :key="venue" :value="venue" :sets="filtered(venue)"/>
+    <ul>
+      <li v-for="venue in noDuplicatesVenues" :key="venue" :value="venue">
+        <VenueCard class="venueCard" :sets="filtered(venue)"/>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -24,10 +28,10 @@ export default {
     },
   },
   methods: {
-        filtered(venue) {
+    filtered(venue) {
       return this.venues.filter((v) => v.venue == venue);
     },
-  }
+  },
 };
 </script>
 
@@ -35,8 +39,9 @@ export default {
 ul {
   list-style: none;
 }
-.artistCard {
-outline:3px black;
+.venueCard {
+  outline: 3px black;
+  max-width:80%;
+  margin:auto;
 }
-
 </style>

@@ -1,40 +1,6 @@
 <template>
   <div class="home">
-    <input
-      type="checkbox"
-      id="filterArtists"
-      name="filterArtists"
-      v-model="filterArtists"
-    />
-    <label for="filterArtists">Filter by artist</label>
-
-    <select v-model="selectedArtist">
-      <option
-        v-for="artist in noDuplicatesArtists"
-        :key="artist"
-        :value="artist"
-      >
-        {{ artist }}
-      </option>
-    </select>
-
-    <br />
-
-    <input
-      type="checkbox"
-      id="filterVenues"
-      name="filterVenues"
-      v-model="filterVenues"
-    />
-    <label for="filterVenues">Filter by venue</label>
-
-    <select v-model="selectedVenue">
-      <option v-for="venue in noDuplicatesVenues" :key="venue" :value="venue">
-        {{ venue }}
-      </option>
-    </select>
-
-    <SetCard v-for="set in filtered" :key="set" :set="set" /> <br />
+    <SetCard class="set-card" v-for="set in sorted" :key="set" :set="set" /> <br />
   </div>
 </template>
 
@@ -58,7 +24,7 @@ export default {
     };
   },
   computed: {
-    filtered() {
+    sorted() {
       let tempArr = this.sets;
       if (this.filterArtists) {
         tempArr = tempArr.filter((set) => set.artist == this.selectedArtist);
@@ -107,10 +73,10 @@ export default {
 </script>
 
 <style scoped>
-SetCard {
+.set-card {
   display: block;
   margin: auto;
-  width: 50%;
+  max-width: 90%;
 }
 div{
   max-width:600px;
