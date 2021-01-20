@@ -1,12 +1,15 @@
 <template>
   <div>
+                  <youtube class="youtube" v-if="set.artist == 'Dead Herring'" :video-id="set.videoId"></youtube>
       <a :href="'https://www.youtube.com/watch?v=' + set.videoId"><img :src="'https://img.youtube.com/vi/' + set.videoId + '/default.jpg'" alt="" size="200"></a>
       <p>
         <b><router-link :to="'/artists/' + set.artist">{{set.artist}}</router-link></b> <br/>
         <router-link :to="'/venues/' + set.venue">{{ set.venue }} </router-link>
         <i>{{set.date}}</i>
-
+        {{this.$parent.selected}}
       </p>
+
+
     <!-- <h2>{{set.artist}} @ {{ set.venue }} {{set.date}}</h2> -->
 
   </div>
@@ -35,6 +38,10 @@ div{
 h2 {
     display:inline;
     text-align: center;
+}
+
+.youtube{
+  display:block;
 }
 /* h3 {
   margin: 40px 0 0;

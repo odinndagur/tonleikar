@@ -41,7 +41,7 @@ ul {
 }
 .artistCard {
   outline: 3px black;
-  max-width:80%;
+  max-width:600px;
   margin:auto;
 }
 </style>

@@ -2,10 +2,10 @@
   <div class="home">
     <ul>
       <li v-for="set in sorted" :key="set">
-            <button @click="select(set)">select</button>
+        <button @click="select(set)">select</button>
 
-    <SetCard class="set-card" :set="set" /> <br />
-    <youtube v-if="selected == set" :video-id="set.videoId"></youtube>
+        <SetCard class="set-card" :set="set" /> <br />
+        
       </li>
     </ul>
   </div>
@@ -43,24 +43,23 @@ export default {
 
       // return tempArr.sort();
       return tempArr.sort((a, b) => {
-        let dateA,dateB;
-        if(a.date.length <= 4){
-          dateA = '' + dateA + '-' + '01-01T00:00';
+        let dateA, dateB;
+        if (a.date.length <= 4) {
+          dateA = "" + dateA + "-" + "01-01T00:00";
         }
-                if(b.date.length <= 4){
-          dateB = '' + dateB + '-' + '01-01T00:00';
-        }
-        else{
-        dateA = a.date.split(".");
-        dateB = b.date.split(".");
-        if(!dateA[2]){
-          dateA[1] = '01';
-          dateA[2] = '01';
-          dateB[1] = '01';
-          dateB[2] = '01';
-        }
-        dateA = "" + dateA[2] + "-" + dateA[1] + "-" + dateA[0] + "T00:00";
-        dateB = "" + dateB[2] + "-" + dateB[1] + "-" + dateB[0] + "T00:00";
+        if (b.date.length <= 4) {
+          dateB = "" + dateB + "-" + "01-01T00:00";
+        } else {
+          dateA = a.date.split(".");
+          dateB = b.date.split(".");
+          if (!dateA[2]) {
+            dateA[1] = "01";
+            dateA[2] = "01";
+            dateB[1] = "01";
+            dateB[2] = "01";
+          }
+          dateA = "" + dateA[2] + "-" + dateA[1] + "-" + dateA[0] + "T00:00";
+          dateB = "" + dateB[2] + "-" + dateB[1] + "-" + dateB[0] + "T00:00";
         }
         return new Date(dateB) - new Date(dateA);
       });
@@ -75,12 +74,11 @@ export default {
       this.sets.forEach((set) => arr.push(set.venue));
       return [...new Set(arr)].sort();
     },
-    
   },
-  methods:{
-select(set){
-  this.selected = set;
-}
+  methods: {
+    select(set) {
+      this.selected = set;
+    },
   },
 };
 </script>
@@ -91,18 +89,17 @@ select(set){
   margin: auto;
   max-width: 90%;
 }
-div{
-  max-width:600px;
-  margin:auto;
+div {
+  max-width: 600px;
+  margin: auto;
 }
 
-ul{
-  list-style-type:none;
+ul {
+  list-style-type: none;
 }
 
-button{
+button {
   float: right;
-  width:50px;
+  width: 50px;
 }
-
 </style>
