@@ -1,6 +1,13 @@
 <template>
   <div class="home">
-    <SetCard class="set-card" v-for="set in sorted" :key="set" :set="set" /> <br />
+    <ul>
+      <li v-for="set in sorted" :key="set">
+            <button @click="select(set)">select</button>
+
+    <SetCard class="set-card" :set="set" /> <br />
+    <youtube v-if="selected == set" :video-id="set.videoId"></youtube>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -21,6 +28,7 @@ export default {
       selectedVenue: "",
       filterArtists: false,
       filterVenues: false,
+      selected: {},
     };
   },
   computed: {
@@ -69,6 +77,11 @@ export default {
     },
     
   },
+  methods:{
+select(set){
+  this.selected = set;
+}
+  },
 };
 </script>
 
@@ -82,4 +95,14 @@ div{
   max-width:600px;
   margin:auto;
 }
+
+ul{
+  list-style-type:none;
+}
+
+button{
+  float: right;
+  width:50px;
+}
+
 </style>

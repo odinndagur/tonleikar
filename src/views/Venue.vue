@@ -48,7 +48,4 @@ filterVenue(){
 </script>
 
 <style scoped>
-.set-card{
-  margin:5px;
-}
 </style>
