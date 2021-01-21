@@ -39,6 +39,21 @@ const routes = [
     path: '/import',
     name:'ImportSet',
     component: () => import('../views/ImportSet.vue')
+  },
+  {
+    path: '/senulinx',
+    name:'Senulinx',
+    component: () => import('../views/Senulinx.vue')
+  },
+  {
+    path: '/senulinx/artist/:artist',
+    name:'Senulinx',
+    component: () => import('../views/SenulinxArtist.vue')
+  },
+  {
+    path: '/senulinx/band/:band',
+    name:'Senulinx',
+    component: () => import('../views/SenulinxBand.vue')
   }
 ]
 
