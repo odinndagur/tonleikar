@@ -1,5 +1,6 @@
 <template>
   <div class="venues">
+        {{venueCount}} venues.
     <ul>
       <li v-for="venue in noDuplicatesVenues" :key="venue" :value="venue">
         <VenueCard class="venueCard" :sets="filtered(venue)"/>
@@ -26,6 +27,12 @@ export default {
       this.venues.forEach((a) => arr.push(a.venue));
       return [...new Set(arr)].sort();
     },
+        venueCount(){
+      let arr = [];
+      this.venues.forEach((v) => arr.push(v.venue));
+      let set = [...new Set(arr)].sort();
+      return set.length;
+  },
   },
   methods: {
     filtered(venue) {

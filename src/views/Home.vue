@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    {{setCount}} sets.
     <SetCard class="set-card" v-for="set in sorted" :key="set" :set="set" /> <br />
   </div>
 </template>
@@ -67,7 +68,9 @@ export default {
       this.sets.forEach((set) => arr.push(set.venue));
       return [...new Set(arr)].sort();
     },
-    
+    setCount(){
+      return this.sets.length;
+    },
   },
 };
 </script>

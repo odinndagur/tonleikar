@@ -1,5 +1,6 @@
 <template>
   <div class="artists">
+    {{artistCount}} artists.
     <ul>
       <li v-for="artist in noDuplicatesArtists" :key="artist" :value="artist">
         <ArtistCard class="artistCard" :sets="filtered(artist)"/>
@@ -26,13 +27,19 @@ export default {
       this.artists.forEach((a) => arr.push(a.artist));
       return [...new Set(arr)].sort();
     },
+    artistCount(){
+      let arr = [];
+      this.artists.forEach((a) => arr.push(a.artist));
+      let set = [...new Set(arr)].sort();
+      return set.length;
+  },
   },
   methods: {
     filtered(artist) {
       return this.artists.filter((a) => a.artist == artist);
     },
   },
-};
+}
 </script>
 
 <style scoped>
