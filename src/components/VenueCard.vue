@@ -61,9 +61,6 @@ div {
   /* margin:2px auto; */
 }
 
-div:hover {
-}
-
 h2 {
     display:inline;
     text-align: center;
