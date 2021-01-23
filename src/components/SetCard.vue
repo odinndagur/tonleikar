@@ -1,5 +1,6 @@
 <template>
   <div>
+
       <a :href="'https://www.youtube.com/watch?v=' + set.videoId"><img :src="'https://img.youtube.com/vi/' + set.videoId + '/default.jpg'" alt="" size="200"></a>
       <p>
         <b><router-link :to="'/artists/' + set.artist">{{set.artist}}</router-link></b> <br/>
@@ -7,16 +8,37 @@
         <i>{{set.date}}</i>
 
       </p>
+                <!-- <button @click="deleteVideo(set)">Delete video</button> -->
+
     <!-- <h2>{{set.artist}} @ {{ set.venue }} {{set.date}}</h2> -->
 
   </div>
 </template>
 
 <script>
+import { db } from "../main";
+
 export default {
   name: "SetCard",
   props: {
     set: Object,
+  },
+    methods: {
+    deleteVideo(video) {
+      let vid_query = db.collection('videos').where('videoId','==',video.videoId);
+      vid_query.get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          doc.ref.delete();
+        });
+      });
+    //   let d = new Date();
+    //   db.collection("videos").add({
+    //     artist: "lol",
+    //     videoId: "lol",
+    //     venue: "lol",
+    //     date: d,
+    //   });
+    },
   },
 };
 </script>
