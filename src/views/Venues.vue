@@ -12,6 +12,7 @@
 <script>
 import SetsData from "../assets/sets.json";
 import VenueCard from "../components/VenueCard.vue";
+import { db } from '../main.js'
 export default {
   components: { VenueCard },
   name: "Venues",
@@ -19,6 +20,11 @@ export default {
     return {
       venues: SetsData,
       venue: "",
+    };
+  },
+      firestore() {
+    return {
+      venues: db.collection("videos").orderBy("date"),
     };
   },
   computed: {

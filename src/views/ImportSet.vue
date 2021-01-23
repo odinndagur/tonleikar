@@ -5,7 +5,7 @@
     <input v-model="url" v-on:keyup.enter="onSubmit" placeholder="url" />
     <button @click="onSubmit">Add set</button>
 
-    <button @click="saveJSON">Save sets as sets.json</button>
+    <button @click="importSets">Import all sets</button>
 
     <!--<p>Preview: {{title}}</p>-->
     <SetCard v-for="set in sets" :set="set" :key="set.videoId" />
@@ -18,10 +18,10 @@
 </template>
 
 <script>
-// TODO: <textarea v-model="message" placeholder="add multiple lines"></textarea> 
+// TODO: <textarea v-model="message" placeholder="add multiple lines"></textarea>
 // í staðinn fyrir <input> til að geta gert mörg sett í einu
 import SetCard from "../components/SetCard.vue";
-import { db } from '../main.js';
+import { db } from "../main.js";
 let apiKey = "AIzaSyDE7PtXM5SSPyg5Y-NudKdBMcJ0YasnqDQ";
 
 export default {
@@ -52,7 +52,7 @@ export default {
     },
     async getData() {
       let videoId = this.getVidId;
-      this.url = '';
+      this.url = "";
       let res = await fetch(
         "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
           videoId +
@@ -68,30 +68,36 @@ export default {
       let artist = title.split("@")[0].trim();
       let date = split[split.length - 1].trim();
       let venue = title.split("@")[1].replace("@", "").replace(date, "").trim();
-            db.collection("videos").add({
+      this.sets.push({
         artist,
-        videoId,
         venue,
         date,
+        videoId,
       });
-      // this.sets.push({
-      //   artist,
-      //   venue,
-      //   date,
-      //   videoId,
-      // });
       // console.log(artist, date, venue);
     },
-    saveJSON(){ 
-      let obj   = this.sets; 
-      let data  = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj)); 
- 
-      let a       = document.createElement('a'); 
-      a.href      = 'data:' + data; 
-      a.download  = 'sets.json'; 
-      // a.innerHTML = 'download .txt file of json'; 
- 
-      document.getElementById('app').appendChild(a); 
+    importSets() {
+      this.sets.forEach((set) => {
+        db.collection("videos").add({
+          artist: set.artist,
+          venue: set.venue,
+          date: set.date,
+          videoId: set.videoId
+        });
+      });
+      this.sets = [];
+    },
+    saveJSON() {
+      let obj = this.sets;
+      let data =
+        "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+
+      let a = document.createElement("a");
+      a.href = "data:" + data;
+      a.download = "sets.json";
+      // a.innerHTML = 'download .txt file of json';
+
+      document.getElementById("app").appendChild(a);
       a.click();
     },
     // addSet() {
@@ -126,5 +132,9 @@ input {
 
 li {
   list-style-type: none;
+}
+
+button {
+  margin-left: 0.5rem;
 }
 </style>

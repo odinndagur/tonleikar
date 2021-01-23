@@ -19,6 +19,10 @@
   color: #2c3e50;
 }
 
+body {
+  margin-bottom: 5rem;
+}
+
 #nav {
   padding: 30px;
 }

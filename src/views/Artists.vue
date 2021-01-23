@@ -12,6 +12,8 @@
 <script>
 import SetsData from "../assets/sets.json";
 import ArtistCard from "../components/ArtistCard.vue";
+import { db } from "../main";
+
 export default {
   components: { ArtistCard },
   name: "Artists",
@@ -19,6 +21,11 @@ export default {
     return {
       artists: SetsData,
       artist: "",
+    };
+  },
+    firestore() {
+    return {
+      artists: db.collection("videos").orderBy("date"),
     };
   },
   computed: {
